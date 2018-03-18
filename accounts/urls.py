@@ -4,5 +4,6 @@ from accounts import views
 
 urlpatterns = [
 
-    path('' , views.index , name = 'index')
+    path('' , views.index , name = 'index') ,
+    path('register/college/' , views.register_college , name = "register-college")
 ]
