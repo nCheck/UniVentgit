@@ -1,0 +1,12 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+    <h1>Colleges</h1>
+    <ul>
+    {% for college in college_list %}
+        <li>{{ college.name }} - {{ college.pincode }}</li>
+        <h2><a href="{% url 'college-detail' slug=college.slug %}">more info</a> </h2>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

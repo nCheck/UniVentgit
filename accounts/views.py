@@ -1,5 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
+
+from accounts.models import College
 from .forms import CollegeForm
 # Create your views here.
 def index(request):
@@ -10,7 +13,18 @@ def register_college(request):
         form = CollegeForm(request.POST , request.FILES)
         if form.is_valid():
             form.save(commit=True)
+
             return render(request , 'accounts/index.html' ,context=None)
     else:
         form = CollegeForm()
     return render(request , 'accounts/register_college.html' , {'form':form})
+
+
+## ##
+
+class CollegeListView(ListView):
+    template_name = 'accounts/colleges.html'
+    model = College
+
+class CollegeDetailView(DetailView):
+    model = College
