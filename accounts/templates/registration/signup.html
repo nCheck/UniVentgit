@@ -1,0 +1,17 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+  <div class="container mr-0">
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% endfor %}
+      </p>
+    <button type="submit">Sign up</button>
+  </form>
+  </div>
+{% endblock %}

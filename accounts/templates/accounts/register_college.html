@@ -1,12 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'accounts/base.html' %}
 {% block content %}
 <div class="container align-content-center mt-5">
 <h1 class="p-5">College Registration</h1>
-    <form method="POST" class="container mr-auto ml-auto" enctype="multipart/form-data" >
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn-success" value="Submit" />
+    <form method="POST" class="container" enctype="multipart/form-data" >
+    <div class="col">
+        {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn-success ml-5 mr-0" value="Submit" />
+    </div>
 </form>
-<div class="align-content-center"><a href="{% url 'college-list' %}">Existing colleges</a> </div>
+<div class="align-content-center p-5"><a href="{% url 'college-list' %}">Existing colleges</a> </div>
 </div>
 {% endblock %}

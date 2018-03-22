@@ -1,6 +1,10 @@
 import itertools
 from django import forms
-from .models import College
+from django.db import models
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+from .models import College, Profile
 from django.utils.text import slugify
 
 class CollegeForm(forms.ModelForm):
@@ -8,6 +12,16 @@ class CollegeForm(forms.ModelForm):
         model = College
         fields = ['name' , 'photo' , 'pincode' ,'website']
         exclude = ['slug']
+
+
+
+class SignUpForm(UserCreationForm):
+    location = forms.CharField(max_length=30)
+    class Meta:
+        model = User
+        fields = ('username', 'location', 'password1', 'password2' )
+
+
 
     # def save(self):
     #     instance = super(College, self).save(commit=False)
