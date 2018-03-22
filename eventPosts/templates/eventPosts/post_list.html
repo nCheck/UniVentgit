@@ -1,0 +1,9 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        {% for pos in post_list %}
+            <h1> <a href="{% url 'eventPosts:post_detail' pk=pos.pk %}">{{ pos.title }}</a> </h1>
+            <h2>Date: {{ pos.published_date }}  </h2>
+        {% endfor %}
+    </div>
+{% endblock %}

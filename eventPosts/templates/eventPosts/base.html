@@ -1,20 +1,32 @@
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Nehal">
-    <title>UniVent</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/mydef.css' %}" type="text/css">
+    <title>Title</title>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}" type="text/css">
 
     <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-auto">
+
+</head>
+<body>
+<div class="sk-bounce1">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-auto">
   <a class="navbar-brand" href="#">UniVent</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -25,7 +37,7 @@
         <a class="nav-link mr-auto ml-auto" href="{% url 'index' %}">Home</a>
       </li>
       <li class="nav-item mr-auto ml-auto active">
-        <a class="nav-link" href="{% url 'eventPosts:post_list' %}">Upcoming Events</a>
+        <a class="nav-link" href="#">Upcoming Events</a>
       </li>
       <li class="nav-item mr-auto ml-auto active">
         <a class="nav-link" href="#">Previous Events</a>
@@ -35,22 +47,22 @@
           {% if user.is_authenticated %}
               <li>
               <li>
-                    <a class="nav-link" href="{% url 'eventPosts:post_new' %}"> New Post</a>
+                    <a href="{% url 'eventPosts:post_new'%}"> New Post</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{% url 'eventPosts:draft' %}"> Drafts</a>
+                    <a href="{% url 'eventPosts:draft' %}"> Drafts</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{% url 'logout' %}"> LogOut</a>
+                    <a href="{% url 'logout' %}"> LogOut</a>
+                </li>
+                <li>
+                    <a>Welcome {{ user.username }}</a>
                 </li>
               <a class="nav-link" href="{% url 'register-college' %}">Register College</a>
               </li>
               <li>
                 <a class="nav-link disabled" href="{% url 'logout' %}">Logout</a>
               </li>
-              <li>
-                    <a style="color: white" class="nav-link">Welcome {{ user.username }}</a>
-                </li>
           {% else %}
               <li>
               <a class="nav-link btn-outline-dark" href="{% url 'login' %}">Login</a>
@@ -63,20 +75,14 @@
   </div>
 </nav>
 
-
-</head>
-<body>
-
-    <div class="container mt-5">
-        {% block content %}
-
-        {% endblock %}
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
-
-
-<footer class="border-bottom text-muted align-content-center"> by nCheck & Karry</footer>
+</div>
+</div>
 </body>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>
