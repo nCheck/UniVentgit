@@ -1,17 +1,54 @@
 {% extends 'accounts/base.html' %}
+{% load static %}
 
 {% block content %}
-  <div class="container mr-0">
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% endfor %}
-      </p>
-    <button type="submit">Sign up</button>
-  </form>
-  </div>
+    <link rel="stylesheet" href="{% static 'css/form-register.css' %}">
+
+     <div class="main-content">
+
+        <!-- You only need this form and the form-register.css -->
+
+        <form class="form-register" method="post" >
+
+            <div class="form-register-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Create an account</h1>
+                    </div>
+
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-row">
+                        <label>
+                            <span>{{ field.label_tag }}</span>
+                            {{ field }}
+                        </label>
+                    </div>
+                    {% endfor %}
+
+
+                    <div class="form-row">
+                        <label class="form-checkbox">
+                            <input type="checkbox" name="checkbox">
+                            <span>I agree to the <a href="#">terms and conditions</a></span>
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="submit">Register</button>
+                    </div>
+
+                </div>
+
+                <a href="{% url 'login' %}" class="form-log-in-with-existing">Already have an account? Login here</a>
+                <br><br>
+                <h5>Can't find college? <a href="{% url 'register-college' %}">Click Here to Add</a> </h5>
+                <br><br>
+            </div>
+
+        </form>
+
+    </div>
 {% endblock %}

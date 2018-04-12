@@ -1,14 +1,44 @@
 {% extends 'accounts/base.html' %}
-
+{% load static %}
 {% block title %}Login{% endblock %}
 
 {% block content %}
-  <div class="container align-content-center">
-    <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-  </div>
+    <link rel="stylesheet" href="{% static 'css/form-login.css' %}">
+
+
+        <!-- You only need this form and the form-login.css -->
+
+        <form class="form-login" method="post" action="#">
+
+            <div class="form-log-in-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Log in</h1>
+                    </div>
+
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-row">
+                        <label>
+                            <span>{{ field.label_tag }}</span>
+                            {{ field }}
+                        </label>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            <div class="form-row">
+                        <button type="submit">Login</button>
+            </div>
+
+
+                <a href="#" class="form-forgotten-password">Forgotten password &middot;</a>
+                <a href="{% url 'signup' %}" class="form-create-an-account">Create an account &rarr;</a>
+
+
+        </form>
+
 {% endblock %}

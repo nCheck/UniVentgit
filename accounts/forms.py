@@ -16,10 +16,10 @@ class CollegeForm(forms.ModelForm):
 
 
 class SignUpForm(UserCreationForm):
-    location = forms.CharField(max_length=30)
+    college = forms.ModelChoiceField(queryset=College.objects.all() ,to_field_name='name' , empty_label=None)
     class Meta:
         model = User
-        fields = ('username', 'location', 'password1', 'password2' )
+        fields = ('username', 'college', 'password1', 'password2' )
 
 
 

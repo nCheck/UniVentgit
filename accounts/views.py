@@ -19,7 +19,7 @@ def register_college(request):
         if form.is_valid():
             form.save(commit=True)
 
-            return render(request , 'accounts/index.html' ,context=None)
+            return redirect('signup')
     else:
         form = CollegeForm()
     return render(request , 'accounts/register_college.html' , {'form':form})
@@ -28,11 +28,15 @@ def register_college(request):
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+        cid = College.objects.get(name=request.POST['college'])
         if form.is_valid():
             user = form.save()
             user.is_staff = True
+            user.is_superuser = True
+            user.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.location = form.cleaned_data.get('location')
+            user.profile.college_name = str(cid.name)
+            user.profile.username = user.username
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
@@ -49,6 +53,8 @@ def signup(request):
 class CollegeListView(ListView):
     template_name = 'accounts/colleges.html'
     model = College
+    def get_queryset(self):
+        return College.objects.order_by('name')
 
 class CollegeDetailView(DetailView):
     model = College
