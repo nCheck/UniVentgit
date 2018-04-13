@@ -16,7 +16,13 @@ class AboutView(TemplateView):
 class PostListView(ListView):
     model = Post
     def get_queryset(self):
-        return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        return Post.objects.filter(event_date__gte=timezone.now())
+
+class OldPostListView(ListView):
+    model = Post
+    template_name = 'eventPosts/old_post_list.html'
+    def get_queryset(self):
+        return Post.objects.filter(event_date__lte=timezone.now())
 
 class PostDetailView(DetailView):
     model = Post
@@ -50,6 +56,8 @@ class DraftListView(LoginRequiredMixin,ListView):
         return Post.objects.filter(published_date__isnull=True).order_by('created_date')
 
 
+
+
 class PostDeleteView(LoginRequiredMixin,DeleteView):
     model = Post
     success_url = reverse_lazy('post_list')
@@ -61,6 +69,7 @@ class PostDeleteView(LoginRequiredMixin,DeleteView):
 @login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    post.author = request.user
     post.publish()
     return redirect('eventPosts:post_detail', pk=pk)
 

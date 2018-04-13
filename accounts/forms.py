@@ -19,7 +19,7 @@ class SignUpForm(UserCreationForm):
     college = forms.ModelChoiceField(queryset=College.objects.all() ,to_field_name='name' , empty_label=None)
     class Meta:
         model = User
-        fields = ('username', 'college', 'password1', 'password2' )
+        fields = ('username', 'email' , 'college', 'password1', 'password2' )
 
 
 

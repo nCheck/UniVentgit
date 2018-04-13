@@ -4,8 +4,9 @@ from eventPosts import views
 
 app_name = 'eventPosts'
 urlpatterns = [
-    path('' , views.PostListView.as_view() , name ='post_list') ,
-    url(r'^$', views.PostListView.as_view(), name='post_list'),
+    path('upcoming/' , views.PostListView.as_view() , name ='post_list') ,
+    path('old/' , views.OldPostListView.as_view() , name ='old_post_list') ,
+
     url(r'^about/$', views.AboutView.as_view(), name='about'),
     url(r'^post/(?P<pk>\d+)$', views.PostDetailView.as_view(), name='post_detail'),
     url(r'^post/new/$', views.CreatePostView.as_view(), name='post_new'),
