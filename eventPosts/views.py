@@ -81,6 +81,7 @@ def add_comment_to_post(request, pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            comment.author = request.user
             comment.save()
             return redirect('eventPosts:post_detail', pk=post.pk)
     else:

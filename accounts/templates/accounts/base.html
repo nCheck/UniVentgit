@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-auto">
-  <a class="navbar-brand" href="#">UniVent</a>
+  <a class="navbar-brand" href="http://127.0.0.1:8000/admin/">UniVent</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -40,9 +40,6 @@
                 </li>
                 <li>
                     <a class="nav-link" href="{% url 'eventPosts:draft' %}"> Drafts</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="{% url 'logout' %}"> LogOut</a>
                 </li>
               <li>
                 <a class="nav-link disabled" href="{% url 'logout' %}">Logout</a>
