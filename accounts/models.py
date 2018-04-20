@@ -13,6 +13,7 @@ class College(models.Model):
     website = models.URLField(verbose_name="website")
     photo = models.FileField(upload_to="college" , blank=True)
     slug = models.SlugField(max_length=50 , unique=True , default=slugify(name))
+
     def __str__(self):
         return self.name
 

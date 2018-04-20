@@ -29,6 +29,7 @@ class PostDetailView(DetailView):
 
 
 class CreatePostView(LoginRequiredMixin,CreateView):
+
     login_url = '/login/'
     redirect_field_name = 'eventPosts/post_detail.html'
 

@@ -21,8 +21,4 @@ urlpatterns = [
 
 
 
-    # path('help/' , views.help , name = 'help') ,
-    # path('' , views.index , name = 'index'),
-    # path('base/' , views.base , name = 'base'),
-    # path('name/' , views.get_name , name = 'name')
 ]

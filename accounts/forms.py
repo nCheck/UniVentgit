@@ -15,7 +15,7 @@ class CollegeForm(forms.ModelForm):
 
 
 
-class SignUpForm(UserCreationForm):
+class SignUpForm(UserCreationForm): #Dyanmic
     college = forms.ModelChoiceField(queryset=College.objects.all() ,to_field_name='name' , empty_label=None)
     class Meta:
         model = User
