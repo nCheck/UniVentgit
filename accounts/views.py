@@ -31,8 +31,6 @@ def signup(request):
         cid = College.objects.get(name=request.POST['college'])
         if form.is_valid():
             user = form.save()
-            user.is_staff = True
-            user.is_superuser = True
             user.save()
             user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.college_name = str(cid.name)
